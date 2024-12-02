@@ -1,0 +1,89 @@
+<% layout("/layouts/boilerplate") %>
+
+<div id="filters">
+    <% const filters = [ 
+    { icon: "fa-globe", label: "All", value: "all"},
+    { icon: "fa-fire", label: "Trending", value: "trending" },
+    { icon: "fa-bed", label: "Rooms", value: "rooms" },
+    { icon: "fa-city", label: "Iconic Cities", value: "iconic_cities" },
+    { icon: "fa-mountain-sun", label: "Mountains", value: "mountains" },
+    { icon: "fa-house-flag", label: "Castles", value: "castles" },
+    { icon: "fa-water-ladder", label: "Swimming Pools", value: "swimming_pool" },
+    { icon: "fa-campground", label: "Camping", value: "camping" },
+    { icon: "fa-cow", label: "Farms", value: "farms" },
+    { icon: "fa-snowflake", label: "Arctic", value: "arctic" },
+    { icon: "fa-igloo", label: "Domes", value: "domes" },
+    { icon: "fa-umbrella-beach", label: "Beach", value: "beach" },
+    { icon: "fa-ship", label: "Boats", value: "boats" },
+  ]; %>
+  <% filters.forEach((filter) => { %>
+    <div class="filter" onclick="window.location.href='/listings/filter/<%= filter.value %>'">
+        <div><i class="fa-solid <%= filter.icon %>"></i></div>
+      <p><%= filter.label %></p>
+    </div>
+  <% }); %>
+
+  <div class="tax-toggle">
+    <div class="form-check-reverse form-switch">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        role="switch"
+        id="flexSwitchCheckDefault"
+      />
+      <label class="form-check-label" for="flexSwitchCheckDefault"
+        >Display total after taxes</label
+      >
+    </div>
+  </div>
+</div>
+<!-- Listings Grid -->
+<div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-1 g-0 mt-3">
+  <% for (listing of allListings) { %>
+  <a href="/listings/<%= listing._id %>" class="listing-link">
+    <div class="card listing-card rounded-3">
+      <div class="card-img-container">
+        <img
+          src="<%= listing.image.url %>"
+          class="card-img-top"
+          alt="listing_img"
+          style="height: 17rem; object-fit: cover"
+        />
+        <!-- Image Overlay -->
+        <div
+          class="card-img-overlay d-flex justify-content-between align-items-start"
+        >
+          <div class="overlay-text text-black">
+            <strong>Location:</strong> <%= listing.location %>
+          </div>
+        </div>
+        <!-- Heart Icons -->
+        <div class="icon">
+          <i
+            class="fa-regular fa-heart heart-icon"
+            onclick="toggleHeart(event, this)"
+          ></i>
+          <i
+            class="fa-solid fa-heart heart-icon d-none"
+            onclick="toggleHeart(event, this)"
+          ></i>
+        </div>
+      </div>
+      <div class="card-body p-3">
+        <h5 class="card-title mb-1 mt-1" style="font-size: 1rem">
+          <%= listing.title %>
+        </h5>
+        <p class="card-text mb-0">
+          <b>
+            &#8377; <%= listing.price ? listing.price.toLocaleString("en-IN") +
+            " / night" : "Price not available" %>
+          </b>
+          <i class="tex-info">&nbsp; &nbsp;+18% GST</i>
+        </p>
+      </div>
+    </div>
+  </a>
+  <% } %>
+</div>
+
+<script src="/js/index.js"></script>

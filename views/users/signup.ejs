@@ -1,0 +1,50 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row justify-content-center mt-5">
+  <h1 class="col-8 text-center text-primary fw-bold">
+    Sign Up for Airbnb
+  </h1>
+  <div class="col-6 p-5 rounded " >
+    <form action="/signup" method="POST" class="needs-validation" novalidate>
+      <div class="mb-4">
+        <label for="username" class="form-label text-secondary">Username</label>
+        <input
+          id="username"
+          name="username"
+          type="text"
+          class="form-control form-control-lg "
+          placeholder="Enter your username"
+          required
+        />
+      </div>
+      <div class="mb-4">
+        <label for="email" class="form-label text-secondary">Email</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          class="form-control form-control-lg "
+          placeholder="Enter your email"
+          required
+        />
+      </div>
+      <div class="mb-4">
+        <label for="password" class="form-label text-secondary">Password</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          class="form-control form-control-lg "
+          placeholder="Create a password"
+          required
+        />
+      </div>
+      <button
+        class="btn btn-primary btn-lg w-100"
+        style="background-image: linear-gradient(90deg, #ff7e5f, #feb47b);"
+      >
+        Sign Up
+      </button>
+    </form>
+  </div>
+</div>

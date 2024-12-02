@@ -1,0 +1,64 @@
+<nav class="navbar custom-navbar border-bottom sticky-top">
+  <div class="container-fluid">
+    <!-- Logo Section -->
+    <a class="navbar-brand" href="/listings">
+      <i class="fa-regular fa-compass logo-icon"></i>
+      <span class="brand-name">AirExplorer</span>
+    </a>
+
+    <!-- Toggler for Mobile View -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarContent"
+      aria-controls="navbarContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <!-- Navbar Links and Search Bar -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <div class="navbar-nav left-links">
+        <a class="nav-link" href="/listings" style="margin-right: 1rem"
+          >Explore</a
+        >
+        <a class="nav-link" href="/listings/new">Add New</a>
+      </div>
+
+      <div class="down-container">
+        <div class="navbar-nav center-search mb-2">
+          <form
+            class="d-flex needs-validation"
+            role="search"
+            action="/listings"
+            method="GET"
+            novalidate
+          >
+            <input
+              class="form-control search-input"
+              type="search"
+              name="query"
+              placeholder="Search Countries"
+              required
+            />
+            <button class="btn btn-search" type="submit">
+              <i class="fa-solid fa-search"></i>
+            </button>
+          </form>
+        </div>
+
+        <div class="navbar-nav right-links">
+          <% if (!currUser) { %>
+          <a class="nav-link btn-outline" href="/signup">Sign Up</a>
+          <a class="nav-link btn-outline" href="/login">Log in</a>
+          <% } else { %>
+          <a class="nav-link btn-outline" href="/logout">Log out</a>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

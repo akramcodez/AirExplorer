@@ -1,0 +1,44 @@
+<% if(success && success.length) { %>
+<div
+  class="flash alert alert-success alert-dismissible show d-flex justify-content-center fs-5"
+  role="alert"
+  id="success-alert"
+>
+  <%= success %>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+<% } %> <% if(error && error.length) { %>
+<div
+  class="flash alert alert-danger alert-dismissible show d-flex justify-content-center fs-5"
+  role="alert"
+  id="error-alert"
+>
+  <%= error %>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+<% } %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const successAlert = document.getElementById('success-alert');
+    const errorAlert = document.getElementById('error-alert');
+
+    if (successAlert) {
+      setTimeout(() => successAlert.remove(), 2000);
+    }
+
+    if (errorAlert) {
+      setTimeout(() => errorAlert.remove(), 2000);
+    }
+  });
+</script>
