@@ -84,6 +84,34 @@
         <div class="invalid-feedback">Location should be valid</div>
       </div>
 
+      <!-- Filters Section -->
+      <div class="mb-3">
+        <label for="filters" class="form-label">Filters</label>
+        <select
+          id="filters"
+          name="listing[filters][]"
+          class="form-select"
+          multiple
+          style="height: 150px;"
+        >
+          <option value="trending">Trending</option>
+          <option value="rooms">Rooms</option>
+          <option value="iconic_cities">Iconic Cities</option>
+          <option value="mountains">Mountains</option>
+          <option value="castles">Castles</option>
+          <option value="swimming_pool">Swimming Pool</option>
+          <option value="camping">Camping</option>
+          <option value="farms">Farms</option>
+          <option value="beach">Beach</option>
+          <option value="arctic">arctic</option>
+          <option value="domes">Domes</option>
+          <option value="beach">Beach</option>
+          <option value="boats">Boats</option>
+        </select>
+        <div class="form-text">Hold down Ctrl (Cmd on Mac) to select multiple filters.</div>
+        <div class="invalid-feedback">Please select at least one filter</div>
+      </div>
+
       <button class="btn btn-dark add-btn mt-3 mb-5">Add</button>
     </form>
   </div>

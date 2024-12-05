@@ -6,7 +6,6 @@ const listingController = require('../controllers/listings.js');
 const multer = require('multer');
 const { storage } = require('../cloudConfig.js');
 const upload = multer({ storage });
-const Listing = require('../models/listing'); 
 
 router
   .route('/')
@@ -20,6 +19,9 @@ router
 
 // new route
 router.get('/new', isLoggedIn, listingController.renderNewForm);
+
+//Profile
+router.get('/profile', isLoggedIn, listingController.profile);
 
 router
   .route('/:id')
@@ -40,17 +42,6 @@ router.get(
   isOwner,
   wrapAsync(listingController.editForm),
 );
-
-router.get('/', async (req, res) => {
-  const { query } = req.query; 
-  console.log('Search query:', query);
-
-  if (query) {
-    res.send(`You searched for: ${query}`);
-  } else {
-    res.send('No search query provided.');
-  }
-});
 
 //Filters
 router.get('/filter/:filter', wrapAsync(listingController.filter));

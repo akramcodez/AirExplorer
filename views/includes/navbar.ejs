@@ -2,7 +2,11 @@
   <div class="container-fluid">
     <!-- Logo Section -->
     <a class="navbar-brand" href="/listings">
-      <i class="fa-regular fa-compass logo-icon"></i>
+      <img
+        class="logo"
+        src="https://res.cloudinary.com/dhu6nuk1w/image/upload/v1733412322/airbnb_DEV/lhwhhdr209skcsyiygi5.png"
+        onerror="this.hidden = true"
+      />
       <span class="brand-name">AirExplorer</span>
     </a>
 
@@ -25,7 +29,12 @@
         <a class="nav-link" href="/listings" style="margin-right: 1rem"
           >Explore</a
         >
-        <a class="nav-link" href="/listings/new">Add New</a>
+        <a class="nav-link" href="/listings/new" style="margin-right: 1rem"
+          >Add New</a
+        >
+        <% if (currUser) { %>
+        <a class="nav-link" href="/listings/profile">My Profile</a>
+        <% } %>
       </div>
 
       <div class="down-container">
@@ -52,10 +61,10 @@
 
         <div class="navbar-nav right-links">
           <% if (!currUser) { %>
-          <a class="nav-link btn-outline" href="/signup">Sign Up</a>
-          <a class="nav-link btn-outline" href="/login">Log in</a>
+          <a class="nav-link btn-outline auth-btn" href="/signup">Sign Up</a>
+          <a class="nav-link btn-outline auth-btn" href="/login">Log in</a>
           <% } else { %>
-          <a class="nav-link btn-outline" href="/logout">Log out</a>
+          <a class="nav-link btn-outline auth-btn" href="/logout">Log out</a>
           <% } %>
         </div>
       </div>

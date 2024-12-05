@@ -1,8 +1,22 @@
 const Listing = require('../models/listing');
 
 module.exports.index = async (req, res) => {
-  const allListings = await Listing.find({});
-  res.render('listings/index.ejs', { allListings });
+  const { query } = req.query;
+
+  if (query) {
+    const regex = new RegExp(query.replace(/\s+/g, '\\s*'), 'i');
+    const filteredListings = await Listing.find({
+      country: { $regex: regex },
+    });
+
+    res.render('listings/index.ejs', {
+      allListings: filteredListings,
+      searchQuery: query,
+    });
+  } else {
+    const allListings = await Listing.find({});
+    res.render('listings/index.ejs', { allListings });
+  }
 };
 
 module.exports.renderNewForm = (req, res) => {
@@ -31,6 +45,7 @@ module.exports.createListing = async (req, res, next) => {
   const newListing = new Listing(req.body.listing);
   newListing.owner = req.user._id;
   newListing.image = { url, filename };
+  newListing.filters.push('all');
   await newListing.save();
   req.flash('success', 'Listing created');
   res.redirect('/listings');
@@ -74,7 +89,6 @@ module.exports.destroyListing = async (req, res) => {
   res.redirect('/listings');
 };
 
-
 module.exports.filter = async (req, res) => {
   const filter = req.params.filter || 'all';
   let query = {};
@@ -86,5 +100,10 @@ module.exports.filter = async (req, res) => {
   res.render('listings/index.ejs', { allListings, currentFilter: filter });
 };
 
-module.exports.search = {
+module.exports.profile = async (req, res) => {
+  const currUser = req.user;
+  const listingsCount = await Listing.countDocuments({ owner: currUser._id });
+  res.render('listings/profile.ejs', { listingsCount });
 };
+
+module.exports.search = {};

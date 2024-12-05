@@ -11,8 +11,9 @@ const listingSchema = Joi.object({
       filename: Joi.string().optional(),
       url: Joi.string().required(),
     }).optional(),
-    filters: Joi.string()
-      .valid(
+    filters: Joi.array()
+    .items(
+      Joi.string().valid(
         'trending',
         'rooms',
         'iconic_cities',
@@ -25,9 +26,10 @@ const listingSchema = Joi.object({
         'domes',
         'beach',
         'boats',
-        'all',
+        'all'
       )
-      .required(),
+    )
+    .optional(),
   }).required(),
 });
 

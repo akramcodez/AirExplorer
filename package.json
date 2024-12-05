@@ -1,17 +1,22 @@
 {
-  "name": "airbnb",
+  "engines": {
+    "node": "20.18.0"
+  },
+  "name": "airexplorer",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
   "keywords": [],
   "author": "Sk Akram",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "cloudinary": "^2.5.1",
+    "cloudinary": "^1.41.3",
     "connect-flash": "^0.1.1",
+    "connect-mongo": "^5.1.0",
     "cookie-parser": "^1.4.7",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",

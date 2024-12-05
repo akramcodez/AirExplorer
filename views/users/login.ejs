@@ -1,18 +1,18 @@
 <% layout("/layouts/boilerplate") %>
 
-<div class="row justify-content-center mt-5">
+<div class="row justify-content-center mt-5 login">
   <h1 class="col-8 text-center text-success fw-bold">
     Login to Airbnb
   </h1>
-  <div class="col-6 p-5 rounded-3">
-    <form action="/login" method="POST" class="needs-validation" novalidate>
+  <div class="col-9 p-5 rounded-3">
+    <form action="/login" method="POST" class="needs-validation login-form" novalidate>
       <div class="mb-4">
         <label for="username" class="form-label text-secondary">Username</label>
         <input
           id="username"
           name="username"
           type="text"
-          class="form-control form-control-lg "
+          class="form-control form-control-lg login-inp"
           placeholder="Enter your username"
           required
         />
@@ -23,7 +23,7 @@
           id="password"
           name="password"
           type="password"
-          class="form-control form-control-lg "
+          class="form-control form-control-lg login-inp"
           placeholder="Enter your password"
           required
         />

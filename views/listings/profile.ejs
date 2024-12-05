@@ -1,0 +1,30 @@
+<% layout("layouts/boilerplate") %>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 text-center">
+      <div
+        class="profile-circle d-flex align-items-center justify-content-center mb-4 mx-auto"
+      >
+        <i class="fas fa-user fa-4x"></i>
+      </div>
+
+      <h2 class="profile-name text-primary mb-2">
+        <%= currUser.username.toUpperCase() %>
+      </h2>
+
+      <div class="listings-count mb-3">
+        <h4>
+          <i class="fas fa-list-ul"></i>
+          <strong><%= listingsCount %></strong> listing<%= listingsCount === 1 ?
+          '' : 's' %> created
+        </h4>
+      </div>
+
+      <p class="lead">
+        Welcome to your profile page, <strong><%= currUser.username %></strong>!
+        You can view your activities and more here.
+      </p>
+    </div>
+  </div>
+</div>
+
