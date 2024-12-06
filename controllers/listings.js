@@ -19,6 +19,7 @@ module.exports.index = async (req, res) => {
       
       if (allListings.length === 0) {
         req.flash('error', 'No listings found for your search.');
+        allListings = await Listing.find({});
       }
     } else {
       allListings = await Listing.find({});
