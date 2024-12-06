@@ -348,9 +348,13 @@ h4 {
   font-family: 'Arial', sans-serif;
 }
 
+.card-description {
+  font-size: 1.2rem;
+ }
+
 @media (max-width: 768px) {
  .card-description {
-  font-size: 0.4rem;
+  font-size: 0.6rem;
  }
 }
 
