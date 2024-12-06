@@ -9,7 +9,6 @@ module.exports.index = async (req, res) => {
     if (query) {
       const regex = new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '\\s*'), 'i');
 
-      // Use $or to combine queries
       allListings = await Listing.find({
         $or: [
           { country: { $regex: regex } },
@@ -17,6 +16,10 @@ module.exports.index = async (req, res) => {
           { title: { $regex: regex } },
         ],
       });
+      
+      if (allListings.length === 0) {
+        req.flash('error', 'No listings found for your search.');
+      }
     } else {
       allListings = await Listing.find({});
     }
@@ -26,7 +29,7 @@ module.exports.index = async (req, res) => {
       searchQuery: query || '',
     });
   } catch (error) {
-    console.error(error); // Optional: Log the error for debugging
+    console.error(error); 
     req.flash('error', 'Something went wrong while fetching listings.');
     res.redirect('/listings');
   }
