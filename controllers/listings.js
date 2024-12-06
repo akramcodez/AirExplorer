@@ -17,7 +17,7 @@ module.exports.index = async (req, res) => {
         ],
       });
       
-      if (allListings.length) {
+      if (!allListings.length) {
         req.flash('error', 'No listings found for your search.');
       }
     } else {
