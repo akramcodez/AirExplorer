@@ -4,25 +4,21 @@ module.exports.index = async (req, res) => {
   const { query } = req.query;
 
   try {
-    let allListings = []; // Initialize to an empty array
+    let allListings;
 
     if (query) {
       const regex = new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '\\s*'), 'i');
 
-      // Search by country first, then location, then title
-      allListings = await Listing.find({ country: { $regex: regex } });
-
+      allListings = await Listing.find({
+        $or: [
+          { country: { $regex: regex } },
+          { location: { $regex: regex } },
+          { title: { $regex: regex } },
+        ],
+      });
+      
       if (!allListings.length) {
-        allListings = await Listing.find({ location: { $regex: regex } });
-      }
-
-      if (!allListings.length) {
-        allListings = await Listing.find({ title: { $regex: regex } });
-      }
-
-      // Provide feedback if no listings were found
-      if (!allListings.length) {
-        req.flash('error', 'No listings found for your search.');
+        allListings = await Listing.find({});
       }
     } else {
       allListings = await Listing.find({});
