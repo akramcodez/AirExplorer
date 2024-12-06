@@ -3,21 +3,35 @@ const Listing = require('../models/listing');
 module.exports.index = async (req, res) => {
   const { query } = req.query;
 
-  if (query) {
-    const regex = new RegExp(query.replace(/\s+/g, '\\s*'), 'i');
-    const filteredListings = await Listing.find({
-      country: { $regex: regex },
-    });
+  try {
+    let allListings;
+
+    if (query) {
+      const regex = new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '\\s*'), 'i');
+
+      // Use $or to combine queries
+      allListings = await Listing.find({
+        $or: [
+          { country: { $regex: regex } },
+          { location: { $regex: regex } },
+          { title: { $regex: regex } },
+        ],
+      });
+    } else {
+      allListings = await Listing.find({});
+    }
 
     res.render('listings/index.ejs', {
-      allListings: filteredListings,
-      searchQuery: query,
+      allListings,
+      searchQuery: query || '',
     });
-  } else {
-    const allListings = await Listing.find({});
-    res.render('listings/index.ejs', { allListings });
+  } catch (error) {
+    console.error(error); // Optional: Log the error for debugging
+    req.flash('error', 'Something went wrong while fetching listings.');
+    res.redirect('/listings');
   }
 };
+
 
 module.exports.renderNewForm = (req, res) => {
   res.render('listings/new.ejs');
