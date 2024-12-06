@@ -348,6 +348,12 @@ h4 {
   font-family: 'Arial', sans-serif;
 }
 
+@media (max-width: 768px) {
+ .card-description {
+  font-size: 0.4rem;
+ }
+}
+
 /* flash */
 .flash {
   border-radius: 0 !important;
