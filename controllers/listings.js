@@ -19,7 +19,7 @@ module.exports.index = async (req, res) => {
       
       if (!allListings.length) {
         req.flash('error', 'No listings found for your search.');
-        res.redirect('/listings');
+        return res.redirect('/listings'); 
       }
     } else {
       allListings = await Listing.find({});
@@ -29,6 +29,7 @@ module.exports.index = async (req, res) => {
       allListings,
       searchQuery: query || '',
     });
+    
   } catch (error) {
     console.error(error); 
     req.flash('error', 'Something went wrong while fetching listings.');
