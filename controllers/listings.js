@@ -18,7 +18,8 @@ module.exports.index = async (req, res) => {
       });
       
       if (!allListings.length) {
-        allListings = await Listing.find({});
+        res.redirect('/listings');
+        req.flash('error', 'No listings found for your search.');
       }
     } else {
       allListings = await Listing.find({});
