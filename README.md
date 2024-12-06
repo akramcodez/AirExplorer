@@ -47,6 +47,16 @@ The live version of the project can be accessed at:
 
 ---
 
+## 📜 License  
+
+This project is licensed under the **MIT License**.  
+
+Permission is granted to use, copy, modify, and distribute this software for any purpose with or without fee, provided that the original copyright notice is included. [LICENSE](/LICENSE) 
+
+**THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.**
+
+---
+
 ## ⚙️ **Installation**
 
 Follow these steps to set up the project locally:
