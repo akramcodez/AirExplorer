@@ -15,7 +15,7 @@ body::-webkit-scrollbar-track {
   background: #dfdfe1;
 }
 
-.body::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-thumb {
   background: #707070;
   border: 2px solid #1c1c1e;
 }
@@ -97,7 +97,7 @@ body::-webkit-scrollbar-thumb:active {
   width: 130px;
 }
 
-.btn-outline {
+.btn-outline:hover {
   border-color: #fe424d;
   color: #fe424d;
 }
@@ -169,7 +169,7 @@ body::-webkit-scrollbar-thumb:active {
     padding-left: 0.4rem;
   }
   .search-input {
-    width: 200px;
+    width: 60vw;
   }
   .btn-search {
     margin-left: 0.3rem;
@@ -184,7 +184,8 @@ body::-webkit-scrollbar-thumb:active {
     height: 100%;
   }
   .right-links{
-    width: 100px;
+    width: auto;
+    min-width:100px;
     height: 35px;
     display: flex;
   }
